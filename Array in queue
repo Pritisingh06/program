@@ -1,0 +1,52 @@
+#include<iostream>
+clss Queue {
+int arr[100];
+int front ,rear;
+ public:
+Queue(){
+front=-1;
+rear=-1;
+}
+bool isEmpty(){
+return front == -1;
+}
+bool isFull(){
+return rear==99;
+}
+void enqueue(int data){
+if(isFull()){
+std::cout<<"queue overflow"<<std::endl;
+retrun;
+}
+if(isEmpty()){
+front=0;
+}
+rear++;
+arr[rear]=data;
+}
+int dequeue(){
+if(isEmpty()){
+std::cout<<"queue underfloe"<<std::endl;
+return -1;
+}
+int data=arr[front];
+if(front==rear){
+front=rear=-1;
+}
+else{
+front++;
+}
+return data;
+}
+};
+int main(){
+Queue q;
+q.enqueue(10);
+q.enqueue(20);
+q.enqueue(30);
+std::cout << q.dequeue() << std::endl; // Output: 10
+std::cout << q.dequeue() << std::endl; // Output: 20
+return 0;
+}
+
+
