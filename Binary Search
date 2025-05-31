@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int binarySearch(int arr[], int low, int high, int x) {
+  if (low > high) {
+    return -1;
+  }
+  int mid = low + (high - low) / 2;
+  if (arr[mid] == x) {
+     return mid;
+  }
+  if (arr[mid] < x) {
+    return binarySearch(arr, mid + 1, high, x);
+  }
+  return binarySearch(arr, low, mid - 1, x);
+}
+int main() {
+  int arr[] = {2, 3, 4, 10, 40};
+  int x = 10;
+
+  int result = binarySearch(arr, 0, sizeof(arr) / sizeof(arr[0]) - 1, x);
+
+  if (result == -1) {
+    cout << "Element not present in array";
+  } else {
+    cout << "Element is present at index " << result;
+  }
+  return 0;
+}
