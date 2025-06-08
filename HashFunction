@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+const int TABLE_SIZE = 10;
+
+int hash_function(int key) {
+    return (key + 1) % TABLE_SIZE;
+}
+
+void linear_probing_hash(vector<int>& elements, vector<int>& hash_table) {
+    for (int element : elements) {
+        int index = hash_function(element);
+        while (hash_table[index] != -1) {
+            index = (index + 1) % TABLE_SIZE;
+        }
+        hash_table[index] = element;
+    }
+}
+
+int search_element(vector<int>& hash_table, int element) {
+    int index = hash_function(element);
+    while (hash_table[index] != -1) {
+        if (hash_table[index] == element) {
+            return index;
+        }
+        index = (index + 1) % TABLE_SIZE;
+    }
+    return -1;
+}
+
+int main() {
+    vector<int> elements = {100, 20, 15, 56, 78};
+    vector<int> hash_table(TABLE_SIZE, -1);
+
+    linear_probing_hash(elements, hash_table);
+
+    cout << "Hash Table:\n";
+    for (int i = 0; i < TABLE_SIZE; ++i) {
+        cout << "[" << i << "] " << hash_table[i] << endl;
+    }
+
+    int element_to_search = 15;
+    int search_index = search_element(hash_table, element_to_search);
+
+    if (search_index != -1) {
+        cout << "Element " << element_to_search << " found at index " << search_index << endl;
+    } else {
+        cout << "Element " << element_to_search << " not found" << endl;
+    }
+
+    return 0;
+}
