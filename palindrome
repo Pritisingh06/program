@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+// Class to check if a number is a palindrome
+class PalindromeChecker {
+private:
+    int number;
+
+public:
+   
+    PalindromeChecker() {
+        number = 0;
+    }
+
+   
+    void getInput() {
+        cout << "Enter a number: ";
+        cin >> number;
+    }
+
+  
+    bool isPalindrome() {
+        int original = number;
+        int reversed = 0;
+
+        while (original > 0) {
+            int digit = original % 10;
+            reversed = reversed * 10 + digit;
+            original /= 10;
+        }
+
+        return number == reversed;
+    }
+
+   
+    void displayResult() {
+        if (isPalindrome()) {
+            cout << number << " is a palindrome." << endl;
+        } else {
+            cout << number << " is not a palindrome." << endl;
+        }
+    }
+};
+
+int main() {
+    PalindromeChecker pc;
+    pc.getInput();
+    pc.displayResult();
+
+    retur
